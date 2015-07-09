@@ -10,6 +10,8 @@ We don't want your playground crashing now, do we?!
 Build up your test data elsewhere, or hey, just put it in here if you want to slow down the Playground.
 */
 // I'll create some test data at some point, to show this off better. For now, just add PerformanceMeasure.swift to your Playground Sources folder.
+
+let testArray = createTestArray(5)
 /*:
 ### Perfomance Testing
 
@@ -18,10 +20,10 @@ Just like we could with XCTestFramework, we can now use the public "measureBlock
 For now, just add some code in the block below to test it out. Why not write a few blocks of code below, and compare them?
 
 */
-let baseCodeTest = measureBlock("Performance Testing", iterations: 30) { () -> Void in
-    
+let baseCodeTest = measureBlock("Standard Swift Sorting - Array of Strings", iterations: 10) { () -> Void in
+    let sorted = swiftSort(testArray)
 }
 
-let optimisedCodeTest = measureBlock("Optimised Code Testing", iterations: 30) { () -> Void in
-    
+let optimisedCodeTest = measureBlock("Quick Sorting - Array of Strings", iterations: 10) { () -> Void in
+    let sorted = quickSort(testArray)
 }
