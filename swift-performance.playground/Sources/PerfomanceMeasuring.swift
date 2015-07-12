@@ -7,13 +7,13 @@ public func measureBlock(name:String, iterations:Int = 1, forBlock block:Measure
     precondition(name.characters.count > 0, "A name must be set. If you want to see results.")
     
     var total:Double = 0.0
-    var cases = [Double]()
+    var iterationsArray = [Double]()
     
     for _ in stride(from: 1, through: iterations, by: 1) {
         let start = NSDate.timeIntervalSinceReferenceDate()
         block()
         let took = Double(NSDate.timeIntervalSinceReferenceDate() - start)
-        cases.append(took)
+        iterationsArray.append(took)
         total += took
     }
     
@@ -21,7 +21,7 @@ public func measureBlock(name:String, iterations:Int = 1, forBlock block:Measure
     
     var deviation = 0.0
     
-    for result in cases {
+    for result in iterationsArray {
         let difference = result - mean
         deviation += difference*difference
     }
@@ -30,9 +30,13 @@ public func measureBlock(name:String, iterations:Int = 1, forBlock block:Measure
     
     let average = mean.milliseconds()
     let stdDeviation = variance.milliseconds()
-    
     let time = total / Double(iterations)
-    let results = ["Name":name, "Time Taken":time, "Average":average, "Std Deviation": stdDeviation]
+    
+    let results = ["Name":name,
+        "Time Taken":time,
+        "Average":average,
+        "Std Deviation": stdDeviation]
+    
     return results as! Dictionary<String, AnyObject>
 }
 
