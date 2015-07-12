@@ -11,7 +11,7 @@ Build up your test data elsewhere, or hey, just put it in here if you want to sl
 */
 // I'll create some test data at some point, to show this off better. For now, just add PerformanceMeasure.swift to your Playground Sources folder.
 
-let testArray = createTestArray(5)
+let testArray = createTestArray(10)
 /*:
 ### Perfomance Testing
 
@@ -25,5 +25,5 @@ let baseCodeTest = measureBlock("Standard Swift Sorting - Array of Strings", ite
 }
 
 let optimisedCodeTest = measureBlock("Quick Sorting - Array of Strings", iterations: 10) { () -> Void in
-    let sorted = quickSort(testArray)
+    let sorted = quicksort(testArray)
 }

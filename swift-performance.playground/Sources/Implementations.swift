@@ -1,49 +1,32 @@
 import Foundation
 
-public func quickSort(testData:[String])->[String] {
-
-    var less = [String]()
-    var equal = [String]()
-    var greater = [String]()
-    
-    if (testData.count <= 1) {
-        return testData
+public func quicksort<T: Comparable>(var list: [T]) -> [T] {
+    if list.count <= 1 {
+        return list
     }
     
-    let pivot:String = testData[testData.count/2]
+    let pivot = list[0]
     
-    for x in testData {
-        if x < pivot {
-            less.append(x)
-        }
-        
-        if x == pivot {
-            equal.append(x)
-        }
-        
-        if x > pivot {
-            greater.append(x)
+    var smallerList = [T]()
+    var equalList = [T]()
+    var biggerList = [T]()
+    
+    for x in list {
+        switch x {
+        case let x where x < pivot:
+            smallerList.append(x)
+        case let x where x == pivot:
+            equalList.append(x)
+        case let x where x > pivot:
+            biggerList.append(x)
+        default:
+            break
         }
     }
     
-    var sorted = [String]()
-    let sortedLess = quickSort(less)
-    let sortedEqual = quickSort(equal)
-    let sortedGreater = quickSort(greater)
-    
-    sorted.extend(sortedLess)
-    sorted.extend(sortedEqual)
-    sorted.extend(sortedGreater)
-    
-    return sorted
+    return quicksort(smallerList) + equalList + quicksort(biggerList)
 }
 
 public func swiftSort(testData:[String])->[String] {
     return testData.sort({$0 < $1})
-}
-
-extension Array {
-    var decompose : (head: T, tail: [T])? {
-        return (count > 0) ? (self[0], Array(self[1..<count])) : nil
-    }
 }
