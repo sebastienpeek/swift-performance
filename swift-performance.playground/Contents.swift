@@ -9,8 +9,6 @@ We don't want your playground crashing now, do we?!
 ### Test Data
 Build up your test data elsewhere, or hey, just put it in here if you want to slow down the Playground.
 */
-// I'll create some test data at some point, to show this off better. For now, just add PerformanceMeasure.swift to your Playground Sources folder.
-
 let testArray = createTestArray(10)
 /*:
 ### Perfomance Testing
