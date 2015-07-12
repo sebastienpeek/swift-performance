@@ -1,5 +1,5 @@
 # swift-performance
-Shawn (websterx) and I decided that we should, whenever we have a challenging idea, to build it out in Swift 2.
+Shawn (webstersx) and I decided that we should, whenever we have a challenging idea, to build it out in Swift 2.
 
 As we were doing our first little challenge, we discussed performance testing. I decided to have a squirrel moment and build out swift-performance.
 
