@@ -9,7 +9,7 @@ public func measureBlock(name:String, iterations:Int = 1, forBlock block:Measure
     var total:Double = 0.0
     var iterationsArray = [Double]()
     
-    for _ in stride(from: 1, through: iterations, by: 1) {
+    for _ in 1.stride(through: iterations, by: 1) {
         let start = NSDate.timeIntervalSinceReferenceDate()
         block()
         let took = Double(NSDate.timeIntervalSinceReferenceDate() - start)
