@@ -1,6 +1,6 @@
 import Foundation
 
-public func quicksort<T: Comparable>(var list: [T]) -> [T] {
+public func quickSort<T: Comparable>(list: [T]) -> [T] {
     if list.count <= 1 {
         return list
     }
@@ -24,7 +24,7 @@ public func quicksort<T: Comparable>(var list: [T]) -> [T] {
         }
     }
     
-    return quicksort(smallerList) + equalList + quicksort(biggerList)
+    return quickSort(smallerList) + equalList + quickSort(biggerList)
 }
 
 public func swiftSort(testData:[String])->[String] {
