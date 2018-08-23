@@ -1,15 +1,15 @@
 import Foundation
 
-public func quickSort<T: Comparable>(list: [T]) -> [T] {
+public func quickSort<T: Comparable>(_ list: [T]) -> [T] {
     if list.count <= 1 {
         return list
     }
     
     let pivot = list[0]
     
-    var smallerList = [T]()
-    var equalList = [T]()
-    var biggerList = [T]()
+    var smallerList: [T] = []
+    var equalList: [T] = []
+    var biggerList: [T] = []
     
     for x in list {
         switch x {
@@ -27,6 +27,8 @@ public func quickSort<T: Comparable>(list: [T]) -> [T] {
     return quickSort(smallerList) + equalList + quickSort(biggerList)
 }
 
-public func swiftSort(testData:[String])->[String] {
-    return testData.sort({$0 < $1})
+public func swiftSort(_ list: [String]) -> [String] {
+    var mutableList = list
+    mutableList.sort(by: <)
+    return mutableList
 }

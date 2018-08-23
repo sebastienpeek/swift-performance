@@ -1,47 +1,46 @@
 import Foundation
 
-public typealias MeasuredBlock = ()->Void
+public typealias MeasuredBlock = () -> Void
 
-public func measureBlock(name:String, iterations:Int = 1, forBlock block:MeasuredBlock)->Dictionary<String,AnyObject> {
+public func measureBlock(_ name: String, iterations: Int = 1, forBlock block: MeasuredBlock) -> [String: Any] {
     precondition(iterations > 0, "Iterations must be greater than 0, but we default to 1 for you...")
-    precondition(name.characters.count > 0, "A name must be set. If you want to see results.")
+    precondition(!name.isEmpty, "A name must be set. If you want to see results.")
     
-    var total:Double = 0.0
-    var iterationsArray = [Double]()
+    var totalTime: Double = 0.0
+    var results: [Double] = []
     
-    for _ in 1.stride(through: iterations, by: 1) {
-        let start = NSDate.timeIntervalSinceReferenceDate()
+    for _ in 0..<iterations {
+        let startTime = Date.timeIntervalSinceReferenceDate
         block()
-        let took = Double(NSDate.timeIntervalSinceReferenceDate() - start)
-        iterationsArray.append(took)
-        total += took
+        let result = Date.timeIntervalSinceReferenceDate - startTime
+        results.append(result)
+        totalTime += result
     }
     
-    let mean = total / Double(iterations)
+    let mean = totalTime / Double(iterations)
     
     var deviation = 0.0
     
-    for result in iterationsArray {
+    for result in results {
         let difference = result - mean
-        deviation += difference*difference
+        deviation += difference * difference
     }
     
     let variance = deviation / Double(iterations)
     
     let average = mean.milliseconds()
     let stdDeviation = variance.milliseconds()
-    let time = total / Double(iterations)
+    let time = totalTime / Double(iterations)
     
-    let results = ["Name":name,
-        "Time Taken":time,
-        "Average":average,
-        "Std Deviation": stdDeviation]
-    
-    return results as! Dictionary<String, AnyObject>
+    return ["Name": name,
+            "Time Taken": time,
+            "Average": average,
+            "Std Deviation": stdDeviation]
 }
 
 extension Double {
-    func milliseconds()->String {
-        return String(format: "%.2lf ms", (self * 1000))
+    
+    func milliseconds() -> String {
+        return String(format: "%.4lf ms", (self * 1000.0))
     }
 }
