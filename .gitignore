@@ -1,6 +1,8 @@
-# Xcode
-#
+## Build generated
 build/
+DerivedData/
+
+## Various settings
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -9,18 +11,20 @@ build/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-xcuserdata
-*.xccheckout
+xcuserdata/
+**/.DS_Store
+
+## Other
 *.moved-aside
-DerivedData
+*.xccheckout
+*.xcscmblueprint
+
+## Obj-C/Swift specific
 *.hmap
 *.ipa
-*.xcuserstate
+*.dSYM.zip
+*.dSYM
 
-# CocoaPods
-#
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
-#
-#Pods/
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
