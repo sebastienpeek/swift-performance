@@ -1,10 +1,10 @@
 import Foundation
 
-public func createTestArray(amount:Double)->[String]{
-    var data = [String]()
+public func createTestArray(count: Int) -> [String] {
+    var data: [String] = []
     
-    for _ in 0.stride(through: amount, by: 1) {
-        data.append(NSUUID().UUIDString)
+    for _ in 0..<count {
+        data.append(UUID().uuidString)
     }
     
     return data
